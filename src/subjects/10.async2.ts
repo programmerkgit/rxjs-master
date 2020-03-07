@@ -8,5 +8,3 @@ subject.subscribe(v => {
     /* subjectがcompleteした時にsubscribe */
     console.log(v);
 });
-
-
