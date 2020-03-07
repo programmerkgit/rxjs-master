@@ -17,10 +17,3 @@ multicasted.subscribe(v => {
 });
 
 multicasted.connect();
-
-/* connectの後なのでsubscribeできない。 */
-setTimeout(() => {
-    multicasted.subscribe(v => {
-        console.log('C:', v);
-    });
-}, 1000);
