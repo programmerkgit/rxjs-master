@@ -12,3 +12,6 @@ subject.next(2);
 subject.next(3);
 subject.next(4);
 subject.complete();
+/* not subscribed */
+subject.next(5);
+subject.complete();
