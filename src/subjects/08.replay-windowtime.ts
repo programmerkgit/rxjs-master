@@ -1,7 +1,7 @@
 import { ReplaySubject } from 'rxjs';
 
 
-/* 500ms分しか保存できない(2個の値) */
+/* 500ms分しか保存できない */
 const subject = new ReplaySubject(100, 500);
 
 let count = 0;
@@ -15,4 +15,4 @@ setTimeout(() => {
     subject.subscribe(v => {
         console.log(v);
     });
-}, 700);
+}, 1000);
