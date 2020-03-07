@@ -1,11 +1,11 @@
-import { ConnectableObservable, from, Subject } from 'rxjs';
+import { ConnectableObservable, from, Observable, Subject } from 'rxjs';
 import { multicast } from 'rxjs/operators';
 
 
-const source = from([ 1, 2, 3 ]) as ConnectableObservable<number>;
+const source = from([ 1, 2, 3 ]) as Observable<number>;
 const subject = new Subject<number>();
 
-const multicasted = source.pipe(multicast(subject));
+const multicasted = source.pipe(multicast(subject)) as ConnectableObservable<number>;
 
 /* 普通のObservableと違い、subscribeはconnectを呼び出すまで実行されないので複数のsubscribeをつけられる。 */
 multicasted.subscribe(v => {
@@ -13,11 +13,12 @@ multicasted.subscribe(v => {
 });
 
 multicasted.subscribe(v => {
-    console.log('b: ' + v);
+    console.log('B: ' + v);
 });
 
-(multicasted as ConnectableObservable<number>).connect();
+multicasted.connect();
 
+/* connectの後なのでsubscribeできない。 */
 setTimeout(() => {
     multicasted.subscribe(v => {
         console.log('C:', v);

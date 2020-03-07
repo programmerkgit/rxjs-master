@@ -4,7 +4,7 @@ import { BehaviorSubject } from 'rxjs';
 const subject = new BehaviorSubject(1);
 
 subject.subscribe(v => {
-    console.log('first', v);
+    console.log('subscribe 1 and next 2', v);
 });
 
 subject.next(2);

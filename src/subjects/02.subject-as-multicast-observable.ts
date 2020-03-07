@@ -4,7 +4,7 @@ const subject = new Subject<number>();
 
 subject.subscribe({
     next: (v) => {
-        console.log(v);
+        console.log('observable1', v);
     }
 });
 
@@ -15,10 +15,6 @@ subject.subscribe({
 });
 
 let count = 0;
-const id = setInterval(() => {
+setInterval(() => {
     subject.next(count++);
 }, 500);
-
-setTimeout(() => {
-    clearInterval(id);
-}, 5000);

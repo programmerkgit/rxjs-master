@@ -1,18 +1,22 @@
-import { from, ReplaySubject } from 'rxjs';
+import { interval, Subject } from 'rxjs';
 import { multicast, refCount } from 'rxjs/operators';
 
 
-const source = from([ 1, 2, 3, 4 ]);
-const subject = new ReplaySubject();
+const source = interval(100);
+const subject = new Subject();
 
 const refCounted = source.pipe(multicast(subject), refCount());
 
-refCounted.subscribe(v => {
-    console.log(v);
+/*　自動でconnectされ、自動でcompleteする　*/
+const subscription = refCounted.subscribe(v => {
+    console.log('first', v);
 });
 
 setTimeout(() => {
+    /* stops execution when observables are unsubscribed*/
+    subscription.unsubscribe();
+    /* start from 0 */
     refCounted.subscribe(v => {
-        console.log(v);
+        console.log('second', v);
     });
 }, 500);
