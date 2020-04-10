@@ -5,6 +5,7 @@ import { map, mergeMap } from 'rxjs/operators';
 const letters = from([ 'a', 'b', 'c' ]) as Observable<string>;
 
 letters.pipe(
+    /* [a, b, c] + 1, [a, b, c] + 2, */
     mergeMap(x => {
         return interval(1000).pipe(map(i => {
             return x + i;

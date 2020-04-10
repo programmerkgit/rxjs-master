@@ -13,7 +13,7 @@ subject.pipe(
 let time;
 let count = 0;
 const randomEmit = () => {
-    /* 800を超えないとリセットされる */
+    /* 100を超えないとリセットされる */
     time = Math.random() * 200;
     subject.next(count++);
     setTimeout(() => {

@@ -4,6 +4,7 @@ import { debounce } from 'rxjs/operators';
 const subject = new Subject();
 
 subject.pipe(
+    /* 最後のemitから800ms立った時にsubscribeされる */
     debounce((v) => {
         return interval(800);
     })
